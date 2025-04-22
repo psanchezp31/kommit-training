@@ -1,10 +1,10 @@
-
 # Modules
-module Tools #can be used in multiple classes
+# can be used in multiple classes
+module Tools
   def say_hi(name)
-      puts "Hello, #{name}"
+    puts "Hello, #{name}"
   end
 end
 
 include Tools
-Tools.say_hi("Mike")
+Tools.say_hi('Mike')
