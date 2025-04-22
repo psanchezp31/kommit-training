@@ -178,13 +178,3 @@ italian_chef = ItalianChef.new()
 italian_chef.make_special_dish()
 
 Tools.say_hi("Mike")
-
-
-
-
-
-
-
-
-
-
