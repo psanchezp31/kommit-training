@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @users = User.all
   end
 
   def create
@@ -16,12 +17,14 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post, notice: "Post was successfully created."
     else
+      @users = User.all
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
     @post = Post.find(params[:id])
+    @users = User.all
   end
 
   def update
@@ -29,6 +32,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post, notice: "Post was successfully updated."
     else
+      @users = User.all
       render :edit, status: :unprocessable_entity
     end
   end
@@ -42,6 +46,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :content, :user_id)
   end
 end
