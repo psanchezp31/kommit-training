@@ -1,11 +1,13 @@
-<h1>Posts</h1>
-<%= link_to 'New Post', new_post_path if authenticated? %>
-<table>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+  <h1>Posts</h1>
+  <%= link_to 'New Post', new_post_path, class: "btn btn-primary" if authenticated? %>
+</div>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
       <th>Content</th>
-      <th colspan="3"></th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -14,12 +16,13 @@
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <% if authenticated? %>
-          <td><%= link_to 'Show', post %></td>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Show', post, class: "btn btn-primary" %></td>
+          <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-secondary" %></td>
           <td>
-            <%= button_to 'Destroy', post, method: :delete,
-            data: { turbo_confirm: 'Are you sure?' },
-            class: 'btn btn-danger' %>
+            <%= button_to 'Destroy', post,
+                method: :delete,
+                class: "btn btn-danger",
+                data: { turbo_confirm: 'Are you sure?' } %>
           </td>
         <% end %>
       </tr>

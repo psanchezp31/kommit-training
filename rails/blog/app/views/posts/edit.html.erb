@@ -1,4 +1,6 @@
 <h1>Editing Post</h1>
 <%= render 'form', post: @post %>
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+<div style="display: flex; align-items: center; gap: 24px; padding-top: 24px;">
+  <%= link_to 'Show', @post , class: "btn btn-primary"%>
+  <%= link_to 'Back', posts_path, class: "btn btn-secondary" %>
+</div>
