@@ -1,5 +1,5 @@
 <h1>Posts</h1>
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_post_path if authenticated? %>
 <table>
   <thead>
     <tr>
@@ -13,13 +13,15 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td>
-          <%= button_to 'Destroy', post, method: :delete,
+        <% if authenticated? %>
+          <td><%= link_to 'Show', post %></td>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td>
+            <%= button_to 'Destroy', post, method: :delete,
             data: { turbo_confirm: 'Are you sure?' },
             class: 'btn btn-danger' %>
-        </td>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
