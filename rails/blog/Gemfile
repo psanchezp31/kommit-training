@@ -63,3 +63,5 @@ group :test do
 end
 
 gem "rubocop", "~> 1.75", group: :development
+
+gem "htmlbeautifier"
