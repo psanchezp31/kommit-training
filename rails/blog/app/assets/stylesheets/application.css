@@ -8,3 +8,42 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+/* Base */
+@import "base/variables.css";
+@import "base/base.css";
+
+/* Components */
+@import "components/navigation.css";
+@import "components/links.css";
+@import "components/forms.css";
+
+/* Views */
+@import "views/posts.css";
+
+/* Base styles */
+body {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  padding: 1rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+nav {
+  justify-content: flex-end;
+  display: flex;
+  font-size: 0.875em;
+  gap: 0.5rem;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+nav a {
+  display: inline-block;
+}
+
+main {
+  max-width: 1024px;
+  margin: 0 auto;
+}
