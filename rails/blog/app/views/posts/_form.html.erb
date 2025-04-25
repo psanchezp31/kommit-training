@@ -11,7 +11,7 @@
   <% end %>
   <div>
     <%= form.label :user_id, "Author" %>
-    <%= form.collection_select :user_id, @users, :id, :name, prompt: "Select an author" %>
+    <%= form.collection_select :user_id, @users, :id, :username, prompt: "Select an author" %>
   </div>
   <div>
     <%= form.label :title %>
