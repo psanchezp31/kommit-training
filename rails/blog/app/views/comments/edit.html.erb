@@ -1,0 +1,9 @@
+<h2>Edit Comment</h2>
+<%= form_with(model: [@post, @comment], local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control", rows: 3 %>
+  </div>
+  <%= f.submit "Update Comment", class: "btn btn-primary mt-2" %>
+  <%= link_to "Cancel", @post, class: "btn btn-secondary mt-2" %>
+<% end %>

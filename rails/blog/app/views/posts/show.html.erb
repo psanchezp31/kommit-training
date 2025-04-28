@@ -43,6 +43,12 @@
                 By <%= comment.user.username %> on <%= comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
               </small>
             </div>
+            <div style="display: flex; justify-content: flex-end; align-items: center; gap: 24px;">
+              <% if current_user == comment.user %>
+                <%= link_to 'Edit', edit_post_comment_path(@post, comment), class:"btn btn-secondary" %>
+                <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete, class:"btn btn-danger" %>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
