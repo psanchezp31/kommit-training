@@ -6,5 +6,50 @@
   <strong>Content:</strong>
   <%= @post.content %>
 </p>
+<div style="display: flex; justify-content: flex-start; align-items: center; gap: 24px;">
+  <p>
+    <strong>Author:</strong>
+    <%= @post.user.username %>
+    <% if current_user && @post.user && current_user != @post.user %>
+      <% if current_user.following?(@post.user) %>
+        <%= button_to "Unfollow", unfollow_user_path(@post.user), method: :delete, class: "btn btn-danger btn-sm" %>
+      <% else %>
+        <%= button_to "Follow", follow_user_path(@post.user), method: :post, class: "btn btn-primary btn-sm" %>
+      <% end %>
+    <% end %>
+  </p>
+</div>
+<div class="comments-section">
+  <h3>Comments</h3>
+  <% if current_user && @post.user && current_user.following?(@post.user) %>
+    <%= form_with(model: [@post, Comment.new], local: true) do |f| %>
+      <div class="form-group">
+        <%= f.text_area :content, class: "form-control", rows: 3, placeholder: "Write a comment..." %>
+      </div>
+      <%= f.submit "Post Comment", class: "btn btn-primary mt-2" %>
+    <% end %>
+  <% else %>
+    <p class="text-muted">You must follow the author to comment on this post.</p>
+  <% end %>
+  <div class="comments-list mt-4">
+    <% comments = @post.comments %>
+    <% if comments.present? %>
+      <% comments.each do |comment| %>
+        <div class="comment card mb-3">
+          <div class="card-body">
+            <p class="card-text"><%= comment.content %></p>
+            <div class="text-muted">
+              <small>
+                By <%= comment.user.username %> on <%= comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+              </small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-muted">No comments yet. Be the first to comment!</p>
+    <% end %>
+  </div>
+</div>
 <%= link_to 'Edit', edit_post_path(@post), class:"btn btn-primary" %>
 <%= link_to 'Back', posts_path, class: "btn btn-secondary" %>
