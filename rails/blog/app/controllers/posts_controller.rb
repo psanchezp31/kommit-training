@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  allow_unauthenticated_access only: %i[ index show ]
+  allow_unauthenticated_access only: %i[ index ]
 
   def index
     @posts = Post.all
